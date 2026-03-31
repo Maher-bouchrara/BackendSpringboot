@@ -1,4 +1,4 @@
-"# 🚀 Backend Spring Boot - Plateforme de Gestion de Publications Scientifiques
+# 🚀 Backend Spring Boot - Plateforme de Gestion de Publications Scientifiques
 
 ## 📖 Description du Projet
 
