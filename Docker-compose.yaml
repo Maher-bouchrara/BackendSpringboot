@@ -3,9 +3,9 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: ia_technology_db
+    container_name: webproject_db_container
     environment:
-      POSTGRES_DB: ia_technology_db
+      POSTGRES_DB: webproject_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
