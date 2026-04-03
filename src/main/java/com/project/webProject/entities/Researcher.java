@@ -1,5 +1,6 @@
 package com.project.webProject.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -52,15 +53,18 @@ public class Researcher {
     // ManyToOne vers Domain (un chercheur appartient à un domaine principal)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "domain_id")
+    @JsonIgnoreProperties({"researchers", "publications"})
     private Domain domain;
 
     // OneToOne optionnel vers User (un chercheur peut avoir un compte)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", unique = true)
+    @JsonIgnoreProperties({"researcher"})
     private User user;
 
     // ManyToMany vers Publication (côté inverse)
     @ManyToMany(mappedBy = "researchers")
+    @JsonIgnoreProperties({"domain", "researchers"})
     @Builder.Default
     private Set<Publication> publications = new HashSet<>();
 }

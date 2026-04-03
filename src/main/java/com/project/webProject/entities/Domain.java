@@ -1,5 +1,6 @@
 package com.project.webProject.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,11 +28,13 @@ public class Domain {
 
     // OneToMany vers Researcher
     @OneToMany(mappedBy = "domain", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"domain", "publications", "user"})
     @Builder.Default
     private Set<Researcher> researchers = new HashSet<>();
 
     // OneToMany vers Publication
     @OneToMany(mappedBy = "domain", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"domain", "researchers"})
     @Builder.Default
     private Set<Publication> publications = new HashSet<>();
 }

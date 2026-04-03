@@ -1,6 +1,7 @@
 package com.project.webProject.entities;
 
 import com.project.webProject.enums.PublicationStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -59,6 +60,7 @@ public class Publication {
     // ManyToOne vers Domain
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "domain_id")
+    @JsonIgnoreProperties({"researchers", "publications"})
     private Domain domain;
 
     // ManyToMany vers Researcher (côté propriétaire)
@@ -68,6 +70,7 @@ public class Publication {
             joinColumns        = @JoinColumn(name = "publication_id"),
             inverseJoinColumns = @JoinColumn(name = "researcher_id")
     )
+    @JsonIgnoreProperties({"domain", "publications", "user"})
     @Builder.Default
     private Set<Researcher> researchers = new HashSet<>();
 }
